@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Animal>
+@{
+    ViewData["Title"] = "Catalog";
+}
+<h1 class="text-center">@ViewData["Title"]</h1>
+<div class="col-4">
+    <form asp-action="Index" method="post">
+        <select name="categoryId" onchange="this.form.submit()" asp-items="ViewBag.CategoryList" class="form-select">
+            <option disabled selected>All Categories</option>
+        </select>
+     </form>
+ </div>
+<div class="row pb-3">
+    @foreach(var mod in Model)
+    {
+        <div class="col-lg-3 col-md-6"> 
+            <div class="row pt-2">
+                <div class="col-12 p-1" style="border: 1px solid #008cba; border-radius:5px;">
+                    <div class="card">
+                        <img src="@mod.PictureName" class="card-img-top rounded" style="height:350px; ">
+                        <div class="card-body">
+                           <div class="pl-1 text-center">
+                               <p class="card-title h3 text-black">@mod.Name</p>
+                           </div>
+                        </div>
+                        <div>
+                            <a asp-controller="Home" asp-action="Details" class="btn btn-primary form-control" asp-route-id="@mod.AnimalId">
+                                <i class="bi bi-card-text"></i> More Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+

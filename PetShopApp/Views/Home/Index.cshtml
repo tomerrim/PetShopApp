@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Animal>
+@{
+    Layout = "_Layout";
+}
+@{
+    ViewData["Title"] = "Home Page";
+}
+@*Home*@
+<div class="text-center mb-5">
+    <h1 class="display-4">Welcome To The Best Pet Shop</h1>
+</div>
+<div class="d-flex justify-content-around align-items-center">
+    
+   @foreach(var mod in Model)
+   {
+      <div class="card h-100 w-25" style="width: 18rem;" id="homePage">
+          <img src="@mod.PictureName" class="card-img-top" id="animalImg">
+          <h2>@mod.Name</h2>
+          <div class="card-body">
+              <div class="w-auto btn-group" role="group">
+                  <a asp-controller="Home" asp-action="Details" asp-route-id="@mod.AnimalId"
+                  class="btn btn-primary mx-2"><i class="bi bi-card-text"></i> More Details</a>
+              </div>
+          </div>
+      </div>
+   }
+</div>

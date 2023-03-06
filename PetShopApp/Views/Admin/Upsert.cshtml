@@ -1,0 +1,80 @@
+﻿@model PetShop.Models.AnimalVM
+
+<form method="post" asp-action="Upsert" enctype="multipart/form-data">
+    <input asp-for="Animal.AnimalId" hidden/>
+    <input asp-for="Animal.PictureName" hidden/>
+    <div class="row">
+        <div class="col-md-10 col-12">
+            <div class="row border p-3 mt-4">
+                <div class="col-12 pb-2"> 
+                    <h2 class="text-primary">@(Model.Animal.AnimalId != 0 ? "Update" : "Create") Animal</h2>
+                    <hr />
+                </div>
+                <div asp-validation-summary="All"></div>
+                <div class="mb-3 col-sm-6 col-12">
+                    <label asp-for="Animal.Name"></label>
+                    <input asp-for="Animal.Name" class="form-control" required/>
+                    <span asp-validation-for="Animal.Name" class="text-danger"></span>
+                </div>
+                <div class="mb-3 col-sm-6 col-12">
+                    <label asp-for="Animal.Age"></label>
+                    <input asp-for="Animal.Age" class="form-control" required/>
+                    <span asp-validation-for="Animal.Age" class="text-danger"></span>
+                </div>
+                <div class="mb-3 col-12">
+                    <label asp-for="Animal.PictureName"></label>
+                    <input type="file" name="file" id="uploadBox" class="form-control" />
+                </div>
+                <div class="mb-3 col-12">
+                    <label asp-for="Animal.Description"></label>
+                    <input asp-for="Animal.Description" class="form-control" required/>
+                    <span asp-validation-for="Animal.Description" class="text-danger"></span>
+                </div>
+                <div class="mb-3 col-12">
+                    <label asp-for="Animal.CategoryId"></label>
+                    <select asp-for="Animal.CategoryId" asp-items="@Model.CategoryList" class="form-select" required>
+                        <option disabled selected>Select Category</option>
+                    </select>
+                    <span asp-validation-for="Animal.CategoryId" class="text-danger"></span>
+                </div>
+                <div class="col-12">
+                    @if (Model.Animal.AnimalId != 0)
+                    {
+                        <button type="submit" class="btn btn-primary" style="width:150px">Update</button>
+                    }
+                    else
+                    {
+                        <button type="submit" onclick="return ValidateInput()" class="btn btn-primary" style="width:150px">Create</button>
+                    }
+                    <a asp-controller="Admin" asp-action="Index" class="btn btn-secondary" style="width:150px">Back To List</a>
+                </div>
+            </div>
+        </div>
+        @if (Model.Animal.AnimalId != 0)
+        {
+            <div class="col-md-2 col-12" id="image">
+                <img src="@Model.Animal.PictureName" width="300" style="border-radius:5px;border:1px solid #bbb9b9" />
+            </div>
+        }
+    </div>
+</form>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+    <script>
+        //sweet alert
+        function ValidateInput(){
+            if (document.getElementById("uploadBox").value == "") {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Please upload an Image!',
+                });
+                return false;
+            }
+            return true;
+        }
+    </script>
+}
