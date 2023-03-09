@@ -45,7 +45,7 @@ namespace PetShopApp.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Index(int categoryId)
+        public IActionResult Index(int categoryId)
         {           
             try
             {
