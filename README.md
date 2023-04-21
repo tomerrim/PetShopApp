@@ -1,0 +1,4 @@
+# PetShopApp
+PetShopApp is an ASP.NET Core MVC application that allows users to browse and interact with a list of animals available at a pet shop. The application utilizes a Microsoft SQL Server database to store and manage animal data. Users can view detailed information about each animal, including its name, species, category, as well as leave comments about a particular animal.
+
+The application also features an administrative dashboard, where an admin user can add, edit, and delete animal data. Additionally, the homepage of the application showcases the two most commented animals on the shop. The main focus of this application is to showcase the fundamental CRUD (Create, Read, Update, Delete) operations of a database-driven application. PetShopApp is a great example of how these operations can be implemented in an ASP.NET Core MVC application using Microsoft SQL Server as the database backend.
