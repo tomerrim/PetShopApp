@@ -30,9 +30,9 @@ namespace PetShop.DataAccess.Data.Repository
             return list;
         }
 
-        public Animal IncludeComments(Expression<Func<Animal, bool>> filter)
+        public Animal IncludeCategoryAndComments(Expression<Func<Animal, bool>> filter)
         {
-            var animal = _db.Animals.Include(x => x.Comments).Where(filter).FirstOrDefault();
+            var animal = _db.Animals.Include(x => x.Comments).Include(x => x.Category).Where(filter).FirstOrDefault();
             return animal!;
         }
     }

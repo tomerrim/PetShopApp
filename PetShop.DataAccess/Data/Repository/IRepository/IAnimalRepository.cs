@@ -10,7 +10,7 @@ namespace PetShop.DataAccess.Data.Repository.IRepository
 {
     public interface IAnimalRepository : IRepository<Animal>
     {
-        Animal IncludeComments(Expression<Func<Animal,bool>> filter);
+        Animal IncludeCategoryAndComments(Expression<Func<Animal,bool>> filter);
 
         IEnumerable<Animal> AnimalsByCategory(int categoryId);
         List<Animal> AnimalsMostCommented(int count);

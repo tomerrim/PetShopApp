@@ -36,7 +36,7 @@ namespace PetShopApp.Controllers
         {
             try
             {
-                var animal = _unitOfWork.Animals.IncludeComments(a => a.AnimalId == id);
+                var animal = _unitOfWork.Animals.IncludeCategoryAndComments(a => a.AnimalId == id);
                 return View(animal);
             }
             catch(Exception ex)
